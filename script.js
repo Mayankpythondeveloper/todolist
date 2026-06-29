@@ -6,6 +6,11 @@ const clearBtn = document.getElementById('clearBtn');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const taskCount = document.getElementById('taskCount');
 
+// Navbar Elements
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const navLinks = document.querySelectorAll('.nav-link');
+
 // State
 let todos = [];
 let currentFilter = 'all';
@@ -15,6 +20,32 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTodos();
     renderTodos();
     updateTaskCount();
+    setupNavbar();
+});
+
+// Navbar Toggle
+function setupNavbar() {
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (hamburger && !hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }
 });
 
 // Add todo
