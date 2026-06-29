@@ -47,10 +47,15 @@ A beautiful, interactive todo list application built with vanilla HTML, CSS, and
 
 ```
 todolist/
-├── index.html       # Main HTML structure
-├── styles.css       # Styling and responsive design
-├── script.js        # JavaScript functionality
-└── README.md        # This file
+├── index.html           # Main HTML structure
+├── script.js            # JavaScript functionality
+├── css/                 # Organized CSS files
+│   ├── global.css       # Global/base styles
+│   ├── animations.css   # Keyframe animations
+│   ├── navbar.css       # Navigation bar styles
+│   ├── todo.css         # Todo list component styles
+│   └── responsive.css   # Mobile responsive styles
+└── README.md            # This file
 ```
 
 ## Browser Support
@@ -64,9 +69,21 @@ Works in all modern browsers:
 ## Customization
 
 You can easily customize the app by editing:
-- **Colors**: Modify the gradient colors in `styles.css` (look for `#667eea` and `#764ba2`)
-- **Font**: Change the font-family in `styles.css`
-- **Layout**: Adjust container width or padding in `styles.css`
+- **Colors**: Modify the gradient colors in `css/todo.css` and `css/navbar.css` (look for `#667eea` and `#764ba2`)
+- **Font**: Change the font-family in `css/global.css`
+- **Layout**: Adjust container width or padding in `css/todo.css`
+- **Animations**: Modify keyframes in `css/animations.css`
+- **Responsive breakpoints**: Update media queries in `css/responsive.css`
+
+### CSS File Organization
+
+The styles are organized into separate files for better maintainability:
+
+- **global.css** - Base styles (reset, body, font setup)
+- **animations.css** - All @keyframes animations
+- **navbar.css** - Navigation bar and branding
+- **todo.css** - Todo list components (input, buttons, items, etc.)
+- **responsive.css** - Mobile and tablet specific styles
 
 ## Tips
 
