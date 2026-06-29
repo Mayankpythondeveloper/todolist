@@ -4,6 +4,69 @@
     box-sizing: border-box;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -21,6 +84,7 @@ body {
     width: 100%;
     max-width: 600px;
     overflow: hidden;
+    animation: fadeIn 0.6s ease-out;
 }
 
 header {
@@ -28,11 +92,13 @@ header {
     color: white;
     padding: 30px 20px;
     text-align: center;
+    animation: slideIn 0.6s ease-out;
 }
 
 header h1 {
     font-size: 2.5em;
     margin-bottom: 5px;
+    animation: bounce 2s ease-in-out infinite;
 }
 
 .subtitle {
@@ -53,12 +119,15 @@ header h1 {
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1em;
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
+    animation: slideIn 0.6s ease-out 0.2s both;
 }
 
 .todo-input:focus {
     outline: none;
     border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: scale(1.02);
 }
 
 .add-btn {
@@ -70,16 +139,21 @@ header h1 {
     cursor: pointer;
     font-weight: 600;
     font-size: 1em;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;
+    animation: slideIn 0.6s ease-out 0.3s both;
+    position: relative;
+    overflow: hidden;
 }
 
 .add-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+    animation: pulse 0.6s ease-in-out;
 }
 
 .add-btn:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
+    animation: pulse 0.3s ease-in-out;
 }
 
 .filter-section {
@@ -97,17 +171,20 @@ header h1 {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 500;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.6s ease-out 0.4s both;
 }
 
 .filter-btn:hover {
     background: #e0e0e0;
+    transform: translateY(-2px);
 }
 
 .filter-btn.active {
     background: #667eea;
     color: white;
     border-color: #667eea;
+    animation: pulse 0.4s ease-out;
 }
 
 .todo-list {
@@ -125,12 +202,14 @@ header h1 {
     background: #f9f9f9;
     border-radius: 8px;
     margin-bottom: 8px;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    animation: slideIn 0.4s ease-out;
 }
 
 .todo-item:hover {
     background: #f0f0f0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateX(5px);
 }
 
 .todo-item.completed {
@@ -140,6 +219,7 @@ header h1 {
 .todo-item.completed .todo-text {
     text-decoration: line-through;
     color: #999;
+    animation: none;
 }
 
 .checkbox {
@@ -147,6 +227,15 @@ header h1 {
     height: 20px;
     cursor: pointer;
     accent-color: #667eea;
+    transition: transform 0.2s ease;
+}
+
+.checkbox:hover {
+    transform: scale(1.2);
+}
+
+.checkbox:checked {
+    animation: pulse 0.3s ease-out;
 }
 
 .todo-text {
@@ -164,11 +253,18 @@ header h1 {
     border-radius: 5px;
     cursor: pointer;
     font-weight: 500;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.4s ease-out 0.1s both;
 }
 
 .delete-btn:hover {
     background: #ff5252;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 82, 82, 0.3);
+}
+
+.delete-btn:active {
+    animation: shake 0.3s ease-in-out;
 }
 
 .footer {
@@ -178,11 +274,17 @@ header h1 {
     padding: 15px 20px;
     background: #f9f9f9;
     border-top: 1px solid #e0e0e0;
+    animation: fadeIn 0.6s ease-out 0.5s both;
 }
 
 #taskCount {
     color: #666;
     font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+#taskCount:hover {
+    transform: scale(1.05);
 }
 
 .clear-btn {
@@ -193,21 +295,30 @@ header h1 {
     border-radius: 5px;
     cursor: pointer;
     font-weight: 500;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.6s ease-out 0.5s both;
 }
 
 .clear-btn:hover {
     background: #f57c00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 152, 0, 0.3);
+}
+
+.clear-btn:active {
+    animation: pulse 0.3s ease-out;
 }
 
 .empty-state {
     text-align: center;
     padding: 40px 20px;
     color: #999;
+    animation: fadeIn 0.6s ease-out;
 }
 
 .empty-state p {
     font-size: 1.1em;
+    animation: bounce 3s ease-in-out infinite;
 }
 
 @media (max-width: 480px) {

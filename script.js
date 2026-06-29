@@ -43,10 +43,21 @@ function addTodo() {
 
 // Delete todo
 function deleteTodo(id) {
-    todos = todos.filter(todo => todo.id !== id);
-    saveTodos();
-    renderTodos();
-    updateTaskCount();
+    const todoElement = document.querySelector(`[data-id="${id}"]`);
+    if (todoElement) {
+        todoElement.style.animation = 'slideOut 0.4s ease-in forwards';
+        setTimeout(() => {
+            todos = todos.filter(todo => todo.id !== id);
+            saveTodos();
+            renderTodos();
+            updateTaskCount();
+        }, 400);
+    } else {
+        todos = todos.filter(todo => todo.id !== id);
+        saveTodos();
+        renderTodos();
+        updateTaskCount();
+    }
 }
 
 // Toggle todo completion
@@ -102,6 +113,7 @@ function renderTodos() {
     filteredTodos.forEach(todo => {
         const li = document.createElement('li');
         li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+        li.setAttribute('data-id', todo.id);
         li.innerHTML = `
             <input 
                 type="checkbox" 
